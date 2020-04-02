@@ -1,0 +1,32 @@
+source: https://www.geeksforgeeks.org/null-cipher/?ref=rp (the geeks for geeks code)
+
+Gaines, Helen F. (2014). Cryptanalysis: A Study of Ciphers and Their Solution. Courier Corporation
+
+encrypt(plainText, password)
+{
+FOR x is all values of plainText
+	if(isAlpha)
+		cipherText <- generateWord(x)
+	else
+		cipherText <- x
+return cipherText
+}
+
+generateWord(x){
+wordsize = rand() % 8
+newWord = x
+while (i < wordSize)
+	newWord += (rand() % 26)
+	i++
+return newWord
+}
+
+decrypt(cipherText, password){
+stringstream ss(cipherText)
+plainText
+while(stringstream)
+	word
+	ss >> word
+	plainText += word[0]
+return plainTexxt 
+}
