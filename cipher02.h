@@ -1,5 +1,5 @@
 /********************************************************************
-* Header:
+* Header: Garrett
 *    Implement your cipher here. You can view 'example.h' to see the
 *    completed Caesar Cipher example.
 ********************************************************************/
