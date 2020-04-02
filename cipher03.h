@@ -12,8 +12,8 @@
 class Cipher03 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth()  { return "pseudocode author"; }
-   virtual std::string getCipherName()  { return "cipher name"; }
+   virtual std::string getPseudoAuth()  { return "Nakai Velasquez"; }
+   virtual std::string getCipherName()  { return "Affine Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -36,10 +36,10 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str =  "insert the encryption pseudocode\n";
+      str =  "\n\n\nAffine Encryption:\n\nRead in plaintext from user\nRead in key from user in form of 2 intigers\nStore: \n   a = first intiger \n   b = second intiger\n   m = 95 (alphabet size)\n\nParse through plaintext:\n      x = ascii decimal (int) equivalent for plaintext[i]\n      plaintext[i] = ax + b % m\nDisplay: plaintext (now encrypted)";
 
       // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      str += "\n\n\nAffine Decrpytion:\n\nread in ciphertext from user\nRead in key from user in form of 2 intigers\nStore: \n   a = first intiger \n   b = second intiger \n   m = 95 (alphabet size)\n\n// Find inverse of key\nLoop up from 0-94 (alphabet size):\n      if ((a * i % 94) == 1)\n         inverse = i\n\nParse through cyphertext:\n      ciphertext[i] = inverse * (ciphertext[i] - b) % 94\nDisplay: plaintext (now decrypted)";
 
       return str;
    }
