@@ -1,5 +1,5 @@
 /********************************************************************
-* Header:
+* Header: Bryan
 *    Implement your cipher here. You can view 'example.h' to see the
 *    completed Caesar Cipher example.
 ********************************************************************/
@@ -12,8 +12,8 @@
 class Cipher05 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth()  { return "pseudocode author"; }
-   virtual std::string getCipherName()  { return "cipher name"; }
+   virtual std::string getPseudoAuth()  { return "Bryan Yeske"; }
+   virtual std::string getCipherName()  { return "Vingenere Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -23,7 +23,11 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      std::string s;
+      s += "www.britannica.com, Gustavus J. Simmons (2009), ";
+      s += "\"Vigenère cipher\', \n   retrieved: ";
+      s += "https://www.britannica.com/topic/Vigenere-cipher\n\n";
+      return s;
    }
    
    /**********************************************************
@@ -36,10 +40,44 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str =  "insert the encryption pseudocode\n";
+       // The encryptCase pseudocode
+      str =  "#include<bits/stdc++.h>\n ";
+      str += "encrypt(string  plainText, string password)\n";
+      str += "  String Key = sterilize ( password)\n";
+      str += "  String coded\n";
+      str += "    For (int i = 0; i  <= plaintext.size(); I ++)\n";
+      str += "      int p = i %key.size()// needed to go back through password\n";
+      str += "      If (isalpha(plaintext[i]))\n";
+      str += "          Int x = ( plaintext[i] + keyt[p]) % 26\n";
+      str += "          x += ’A’\n";
+      str += "          coded.push_back(x)\n ";
+      str += "     else\n";
+      str += "       Coded.pushback(plaintext[i]\n";
+      str += "   RETURN coded\n\n";
 
-      // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      // The decryptCase pseudocode
+      str += "encrypt(string cipher, string password)\n";
+      str += "  String key = sterilize ( password)\n";
+      str += "  String answer\n";
+      str += "    For (int i = 0; i  <= plaintext.size(); I ++)\n";
+      str += "      int p = i %key.size() // needed to go back through password\n";
+      str += "      If (isalpha(plaintext[i]))\n";
+      str += "          Int x = ( (cipher[i] - key[p]) + 26  ) % 26\n";
+      str += "          x += ’A’\n";
+      str += "          answer.push_back(x)\n ";
+      str += "      else\n";
+      str += "       answer.pushback(plaintext[i]\n";
+      str += "   RETURN answer\n\n";
+
+      // helper routine
+      str += "sterilize(string password)\n";
+      str += " string temp \n";
+      str += " //removes symbols and makes only a word password";
+      str += "  for (int i = 0; i <= password.size() i++) \n";
+      str += "    if (isalpha(password[i]))\n";
+      str += "      temp.pushback(password[i[\n";
+      str += "   RETURN temp\n\n";
+
 
       return str;
    }
