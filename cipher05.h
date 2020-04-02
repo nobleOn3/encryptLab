@@ -13,7 +13,7 @@ class Cipher05 : public Cipher
 {
 public:
    virtual std::string getPseudoAuth()  { return "Bryan Yeske"; }
-   virtual std::string getCipherName()  { return "Keyword"; }
+   virtual std::string getCipherName()  { return "Vingenere Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
