@@ -43,12 +43,12 @@ public:
        // The encryptCase pseudocode
       str =  "#include<bits/stdc++.h>\n ";
       str += "encrypt(string  plainText, string password)\n";
-      str += "  String Key = sterilize ( plaintext, password)\n";
+      str += "  String Key = sterilize ( password)\n";
       str += "  String coded\n";
       str += "    For (int i = 0; i  <= plaintext.size(); I ++)\n";
-      str += "      int p = i %password.size()// needed to go back through password\n";
+      str += "      int p = i %key.size()// needed to go back through password\n";
       str += "      If (isalpha(plaintext[i]))\n";
-      str += "          Int x = ( password[i] + keyt[p]) % 26\n";
+      str += "          Int x = ( plaintext[i] + keyt[p]) % 26\n";
       str += "          x += ’A’\n";
       str += "          coded.push_back(x)\n ";
       str += "     else\n";
@@ -57,20 +57,20 @@ public:
 
       // The decryptCase pseudocode
       str += "encrypt(string cipher, string password)\n";
-      str += "  String Key = sterilize ( plaintext, password)\n";
+      str += "  String key = sterilize ( password)\n";
       str += "  String answer\n";
       str += "    For (int i = 0; i  <= plaintext.size(); I ++)\n";
-      str += "      int p = i %password.size() // needed to go back through password\n";
+      str += "      int p = i %key.size() // needed to go back through password\n";
       str += "      If (isalpha(plaintext[i]))\n";
       str += "          Int x = ( (cipher[i] - key[p]) + 26  ) % 26\n";
       str += "          x += ’A’\n";
       str += "          answer.push_back(x)\n ";
-      str += "     else\n";
+      str += "      else\n";
       str += "       answer.pushback(plaintext[i]\n";
       str += "   RETURN answer\n\n";
 
       // helper routine
-      str += "sterilize(string plainText, string password)\n";
+      str += "sterilize(string password)\n";
       str += " string temp \n";
       str += " //removes symbols and makes only a word password";
       str += "  for (int i = 0; i <= password.size() i++) \n";
