@@ -63,8 +63,39 @@ public:
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
    {
-      std::string plainText = cipherText;
+      std::string plainText;
       // TODO - Add your code here
+      // Affine Decrpytion:read in ciphertext from user
+      // Read in key from user in form of 2 intigers
+      // Store:  
+      // a = first intiger 
+      // b = second intiger \n  
+      int a = password[0].stoi();
+      int b = password[1].stoi(); 
+
+      // m = 95 (alphabet size)\n\n// 
+      int m = 95;
+
+      // Find inverse of key\n
+      // Loop up from 0-94 (alphabet size):\n     
+      //  if ((a * i % 94) == 1)\n         
+      //  inverse = i\n\n
+      int inverse = 0;
+      for(int i = 0; i < m; i++)
+      {
+         if(((a * i) % 94) == 1)
+         {
+            inverse = i;
+            break;
+         }
+      }
+      //Parse through ciphertext:\n      
+      //  ciphertext[i] = inverse * (ciphertext[i] - b) % 94\n
+      for(int i = 0; i < cipherText.size(); i++)
+      {
+         plainText += (char)(inverse * (cipherText[i].stoi() - b) % 94);
+      }
+      //  Display: plaintext (now decrypted)
       return plainText;
    }
 };
