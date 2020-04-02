@@ -1,5 +1,5 @@
 /********************************************************************
-* Header: Jessen
+* Header: Jessen Nihilist cipher
 *    Implement your cipher here. You can view 'example.h' to see the
 *    completed Caesar Cipher example.
 ********************************************************************/
@@ -36,7 +36,12 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str =  "insert the encryption pseudocode\n";
+      str =  "encrypt(plainText, password)\n";
+      str += "   offset <- offsetFromPassword(password)\n";
+      str += "   FOR p is all values of plainText\n";
+      str += "      index <- (indexFromCharacter(*p) + offset) % size\n";
+      str += "      cipherText += characterFromIndex(index)\n";
+      str += "   RETURN cipherText\n\n";
 
       // The decrypt pseudocode
       str += "insert the decryption pseudocode\n";
@@ -67,6 +72,7 @@ public:
       // TODO - Add your code here
       return plainText;
    }
+
 };
 
 #endif // CIPHER01_H
