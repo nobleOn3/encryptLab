@@ -26,7 +26,7 @@ public:
    virtual std::string getPseudoAuth()  { return "JESSENNOBLE"; }
    virtual std::string getCipherName()  { return "Nihilist"; }
    virtual std::string getEncryptAuth() { return "Bryan Yeske"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Jeremias Platero"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -219,7 +219,16 @@ public:
                                const std::string & password)
    {
       std::string plainText = cipherText;
-      // TODO - Add your code here
+      std::string en_pass = "";
+      for (int i = 0; i < password.length(); i++) {
+          for (int r = 0; r < 8; r++) {
+              for (int c = 0; c < 8; c++) {
+                  if (table[r][c] == password[i]) {
+                      en_pass += 
+                  }
+              }
+          }
+      }
       return plainText;
    }
 
