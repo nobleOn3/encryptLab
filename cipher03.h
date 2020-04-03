@@ -61,7 +61,7 @@ public:
       for (int i = 0; i < plainText.length(); i++) 
       {
           x = (int)plainText[i] - 48;
-          cipherText[i] = ax + b % m;
+          cipherText[i] = (a * x) + (b % m);
       }
 
       return cipherText;

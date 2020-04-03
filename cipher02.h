@@ -81,10 +81,10 @@ public:
       str += "      text += row[k]\n";
 
       // The decrypt pseudocode
-      str += "decrypt(plainText, password)\n";
+      str += "decrypt(cipherText, password)\n";
       str += "   offset = offsetFromPassword(password)\n";
       str += "   FOR p is all values in plainText\n";
-      str += "      row[r] += plainText[p]\n";
+      str += "      row[r] += cipherText[p]\n";
       str += "      if r equals offset\n";
       str += "         r-- and increment is now false\n";
       str += "      else if increment is true\n";
@@ -93,6 +93,73 @@ public:
       str += "         r--;\n";
 
       return str;
+   }
+
+
+   /**********************************************************
+    * REMOVESPACE
+    * Removes spaces from plainText
+    **********************************************************/
+   virtual std::string removeSpace(const std::string & plainText)
+   {
+      string editedText;
+      for(int s = 0; s < plainText.length(); s++)
+      {
+         if(plainText[s] == ' ')
+         {
+            editedText[s] = plainText[s+1];
+         }
+         else
+         {
+            editedText[s] = plainText[s];
+         }
+         
+      }
+      return editedText;
+   }
+
+   /**********************************************************
+    * OFFSETFROMPASSWORD
+    * TODO: ADD description
+    **********************************************************/
+   virtual int offsetFromPassword(const std::string & password)
+   {
+      if(password.find("two"))
+      {
+         return 2;
+      }
+      else if(password.find("three"))
+      {
+         return 3;
+      }
+      else if(password.find("four"))
+      {
+         return 4;
+      }
+      else if(password.find("five"))
+      {
+         return 5;
+      }
+      else if(password.find("six"))
+      {
+         return 6;
+      }
+      else if(password.find("seven"))
+      {
+         return 7;
+      }
+      else if(password.find("eight"))
+      {
+         return 8;
+      }
+      else if(password.find("nine"))
+      {
+         return 9;
+      }
+      else
+      {
+         return 3;
+      }
    }
 
    /**********************************************************

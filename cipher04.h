@@ -15,7 +15,7 @@ public:
    virtual std::string getPseudoAuth()  { return "Jeremias Platero"; }
    virtual std::string getCipherName()  { return "NULL Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Garrett Cloud"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -99,7 +99,7 @@ public:
       // TODO - Add your code here
       stringstream ss(plainText);
       //string decrpted;
-      int offset = password % 3
+      int offset = password % 3;
 
       while (stringstream)
       {
