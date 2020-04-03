@@ -140,12 +140,12 @@ public:
       bool found = false;
          for (i = 0; i <= plainText.size(); i++) {
            found = false;
-            for (r = 0; r <= 7 && found == false; r++){ 
-              for (c = 0; c <= 7 && found == false; c++){
+            for (r = 0; r < 7 && found == false; r++){ 
+              for (c = 0; c < 7 && found == false; c++){
                   if(table[r][c] == toupper(plainText[i])){
-                     cT += r;
-                     cT += c;
-                     if ( i + 1 <= plainText.size()){
+                     cT += std::to_string(r);
+                     cT += std::to_string(c);
+                     if ( i + 1 < plainText.size()){
                        cT += " ";
                        }
                      found = true;
@@ -156,15 +156,14 @@ public:
             
       std::cerr << cT << std::endl;
       
-      int size = password.size();
-         for (i = 0; i <= plainText.size(); i++) {
+         for (i = 0; i <= password.size(); i++) {
            found = false;
-            for (r = 0; r <= 6 && found == false; r++){ 
-              for (c = 0; c <= 6 && found == false; c++){
-                  if(table[r][c] == toupper(password[i % size])){
-                     encodedPassword += r;
-                     encodedPassword += c;
-                     if ( i + 1 <= password.size()){
+            for (r = 0; r < 7 && found == false; r++){ 
+              for (c = 0; c < 7 && found == false; c++){
+                  if(table[r][c] == toupper(password[i])){
+                     encodedPassword += std::to_string(r);
+                     encodedPassword += std::to_string(c);
+                     if ( i + 1 < password.size()){
                        encodedPassword += " ";
                        }
                      found = true;
@@ -173,41 +172,54 @@ public:
                }  
             }
             
-      std::cerr << encodedPassword << std::endl;
+      std::cout << encodedPassword << std::endl;
       
       while(encodedPassword.size() < cT.size()) {
+      std::cout << "EncodedPassword size: " << encodedPassword.size() << std::endl;
+      std::cout << "EncodedPassword: " << encodedPassword << std::endl;
+      std::cout << cT.size() << std::endl;
+            for ( i = 0; i < encodedPassword.size(); i++){
+               encodedPassword += " ";
                encodedPassword += encodedPassword[i];
                i++;
                encodedPassword += encodedPassword[i];
-              if (encodedPassword.size() == cT.size()){
+               i++;
+              if (encodedPassword.size() >= cT.size()){
                  break;
               }
-              else{
-              encodedPassword += " ";
-              }
+            }
       }
+       std::cout << "EncodedPassword: " << encodedPassword << std::endl;
+        std::cout << "cT: " << cT << std::endl;
+      
         // Repeat above process to encode password
          int p_Index = 0;
          int c_Index = 0;
-         int cipher_val = 0;
-         int pass_val = 0;
+         std::string cipher_val;
+         std::string pass_val;
          std::string cipherText;
-         std::cout << "size " << size << "\n";
-         for (i = 0; i <= cT.size(); i = i+3){
-            for (c_Index = i; cT[c_Index] != ' '; c_Index++){ 
-                  cipher_val = (cipher_val * 10) + cT[c_Index];
+         for (i = 0; c_Index < cT.size(); i++){
+            std:: cout << i << "\n";
+            std::cout << c_Index << std::endl;
+            std::cout << cT.size() << std::endl;
+            for (c_Index; cT[c_Index] != ' '&& c_Index != cT.size(); c_Index++){ 
+                  cipher_val += cT[c_Index];
             }
-            std::cout << "c Value " << cipher_val << "\n";
-            for (p_Index = i; encodedPassword[p_Index] != ' '; p_Index++){ 
-                  pass_val = (pass_val * 10) + encodedPassword[p_Index];
+            c_Index++;
+            std::cout << "c Value " << c_Index << "\n";
+            for (p_Index; encodedPassword[p_Index] != ' '&&
+                 p_Index != encodedPassword.size() ; p_Index++){ 
+                  pass_val += encodedPassword[p_Index];
             }
-            std:: cout << " p value: " << pass_val << "\n\n";
-             cipherText += (cipher_val + pass_val);
-             if (i + 1 <= cT.size()){
+            p_Index++;
+            std:: cout << " p value: " << p_Index << "\n\n";
+            cipherText += std::to_string(std::stoi(cipher_val) + std::stoi(pass_val));
+             if (c_Index + 1 <= cT.size()){
                 cipherText += " ";
-                cipher_val = 0;
-                pass_val = 0;
+                cipher_val = "";
+                pass_val = "";
              }
+             std:: cout << " cipherText: " << cipherText << "\n\n";
          }
       return cipherText;
    }
