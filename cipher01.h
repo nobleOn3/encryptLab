@@ -62,13 +62,15 @@ public:
       str += "            IF(table[tableRow][tableCol] EQUALS plaintext[index]\n";
       str += "               encodedPass += tableRow\n";
       str += "               encodedPass += tableCol\n";
-      str += "               IF we have not reached the end of plaintext\n";
+      str += "               IF we have not reached the end of password\n";
       str += "                  encodedPass += SPACE\n";
-      str += "   If cT size > encodedPass size\n";
+      str += "   while(encodedPass size < cT size) ";
       str += "      loop(encodedPass)\n";
       str += "         encodedPass += encodedPass[i]\n";
       str += "         i++";
       str += "         encodedPass += encodedPass[i]\n";
+      str += "         IF encodedPass size == cT size\n";
+      str += "            break;\n";
       str += "   c_Index <- 0\n";
       str += "   p_Index <- 0\n";
       str += "   For each value in cT\n";
@@ -173,6 +175,17 @@ public:
             
       std::cerr << encodedPassword << std::endl;
       
+      while(encodedPassword.size() < cT.size()) {
+               encodedPassword += encodedPassword[i];
+               i++;
+               encodedPassword += encodedPassword[i];
+              if (encodedPassword.size() == cT.size()){
+                 break;
+              }
+              else{
+              encodedPassword += " ";
+              }
+      }
         // Repeat above process to encode password
          int p_Index = 0;
          int c_Index = 0;
