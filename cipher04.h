@@ -37,8 +37,9 @@ public:
       // TODO: please format your pseudocode
       // The encrypt pseudocode
       str = "encrypt(plainText, password)\n";
+      str += "   offset = password % 3\n";
       str += "   FOR x is all values of plainText\n";
-      str += "   cipherText <- generateWord(x,password)\n"; 
+      str += "   cipherText <- generateWord(x,password,offset)\n"; 
       str += "   RETURN cipherText\n\n";
 
       // The decrypt pseudocode
@@ -53,22 +54,23 @@ public:
       str += "   RETURN plainText\n\n";
 
       //generates words with random letters
-      str += "generateWord(x,password)\n";
+      str += "generateWord(x,password,offset)\n";
       str += "   wordsize = rand() % 8\n";
-      str += "   offset = password % 3\n";
       str += "   if(offset == 0)\n";
       str += "      newWord = x\n";
       str += "      while (i < wordSize)\n";
       str += "            newWord += 'a' + (rand() % 26)\n";
       str += "            i++\n";
       str += "   if(offset == 1)\n";
-      str += "      newWord = x\n";
       str += "      while (i < wordSize)\n";
+      str += "            if(i==1)\n";
+      str += "                newWord += x\n";
       str += "            newWord += 'a' + (rand() % 26)\n";
       str += "            i++\n";
       str += "   if(offset == 2)\n";
-      str += "      newWord = x\n";
       str += "      while (i < wordSize)\n";
+      str += "            if(i==2)\n";
+      str += "                newWord += x\n";
       str += "            newWord += 'a' + (rand() % 26)\n";
       str += "            i++\n";
       str += "    return newWord\n\n";
