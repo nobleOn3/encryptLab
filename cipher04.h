@@ -97,14 +97,17 @@ public:
    {
       std::string plainText = cipherText;
       // TODO - Add your code here
-      //stringstream ss(cipherText)
-      //plainText
-      //offset = password % 3
-      //while(stringstream)
-      str += "            word\n";
-      str += "            ss >> word\n";
-      str += "            plainText += word[offset]\n";
-      str += "   RETURN plainText\n\n";
+      stringstream ss(plainText);
+      //string decrpted;
+      int offset = password % 3
+
+      while (stringstream)
+      {
+          string word;
+          ss >> word;
+          cipherText += word[offset];
+      }
+
       return plainText;
    }
 };
