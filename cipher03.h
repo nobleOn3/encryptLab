@@ -60,7 +60,7 @@ public:
 
       for (int i = 0; i < plainText.length(); i++) 
       {
-          x = (int)character - 48;
+          x = (int)plainText[i] - 48;
           cipherText[i] = ax + b % m;
       }
 
