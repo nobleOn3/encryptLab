@@ -12,8 +12,8 @@
 class Cipher03 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth()  { return "pseudocode author"; }
-   virtual std::string getCipherName()  { return "cipher name"; }
+   virtual std::string getPseudoAuth()  { return "Nakai Velasquez"; }
+   virtual std::string getCipherName()  { return "Affine Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -36,10 +36,10 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str =  "insert the encryption pseudocode\n";
+      str =  "\n\n\nAffine Encryption:\n\nSplit password into two intigers\nStore: \n   a = first intiger \n   b = second intiger\n   m = 95 (alphabet size)\n\nParse through plaintext:\n      x = ascii decimal (int) equivalent for plaintext[i]\n      plaintext[i] = ax + b % m\nDisplay: plaintext (now encrypted)";
 
       // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      str += "\n\n\nAffine Decrpytion:\n\nSplit password into two intigers\nStore: \n   a = first intiger \n   b = second intiger \n   m = 95 (alphabet size)\n\n// Find inverse of key\nLoop up from 0-94 (alphabet size):\n      if ((a * i % 94) == 1)\n         inverse = i\n\nParse through cyphertext:\n      ciphertext[i] = inverse * (ciphertext[i] - b) % 94\nDisplay: plaintext (now decrypted)";
 
       return str;
    }
@@ -63,8 +63,39 @@ public:
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
    {
-      std::string plainText = cipherText;
+      std::string plainText;
       // TODO - Add your code here
+      // Affine Decrpytion:read in ciphertext from user
+      // Read in key from user in form of 2 intigers
+      // Store:  
+      // a = first intiger 
+      // b = second intiger \n  
+      int a = password[0].stoi();
+      int b = password[1].stoi(); 
+
+      // m = 95 (alphabet size)\n\n// 
+      int m = 95;
+
+      // Find inverse of key\n
+      // Loop up from 0-94 (alphabet size):\n     
+      //  if ((a * i % 94) == 1)\n         
+      //  inverse = i\n\n
+      int inverse = 0;
+      for(int i = 0; i < m; i++)
+      {
+         if(((a * i) % 94) == 1)
+         {
+            inverse = i;
+            break;
+         }
+      }
+      //Parse through ciphertext:\n      
+      //  ciphertext[i] = inverse * (ciphertext[i] - b) % 94\n
+      for(int i = 0; i < cipherText.size(); i++)
+      {
+         plainText += (char)(inverse * (cipherText[i].stoi() - b) % 94);
+      }
+      //  Display: plaintext (now decrypted)
       return plainText;
    }
 };
