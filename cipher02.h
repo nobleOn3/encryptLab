@@ -70,7 +70,7 @@ public:
       str += "   editedText equals the return from removeSpace(plainText)\n";
       str += "   offset equals the return from offsetFromPassword(password)\n";
       str += "   FOR p is all values in plainText\n";
-      str += "      row[i] += plainText[p]\n";
+      str += "      row[i] += plainText[p]\n"; 
       str += "      if r equals offset\n";
       str += "         r-- and increment is now false\n";
       str += "      else if increment is true\n";
@@ -169,8 +169,49 @@ public:
    virtual std::string encrypt(const std::string & plainText,
                                const std::string & password)
    {
-      std::string cipherText = plainText;
+      std::string cipherText;
       // TODO - Add your code here
+      // "   editedText equals the return from removeSpace(plainText)\n";
+      std::string editedText = removeSpace(plainText);
+      // "   offset equals the return from offsetFromPassword(password)\n";
+      const int key = offsetFromPassword(password);
+      bool increment = true;
+      std::string row = new int[key];
+      int count = 0;
+      // "   FOR p is all values in plainText\n";
+      // "      row[i] += plainText[p]\n";
+      // "      if r equals offset\n";
+      // "         r-- and increment is now false\n";
+      // "      else if increment is true\n";
+      // "         r++;\n";
+      // "      else\n";
+      // "         r--;\n";
+      for(int p = 0, int r = 0; p < plainText.size(); p++)
+      {
+         row[r] +=plainText[p];
+         count++;
+         if(r == key)
+         {
+            r--;
+            increment = false;
+         }
+
+         else if(increment == true)
+            r++;
+         else
+         {
+            r--;
+         }
+         
+      }
+      // "   For k is number of rows\n";
+      // "      text += row[k]\n";
+
+      for(int k = 0; k < count; k++)
+      {
+         cipherText = row[k];
+      }
+
       return cipherText;
    }
 

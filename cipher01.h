@@ -190,7 +190,7 @@ public:
             }
       }
        std::cout << "EncodedPassword: " << encodedPassword << std::endl;
-        std::cout << "cT: " << cT << std::endl;
+       std::cout << "cT: " << cT << std::endl;
       
         // Repeat above process to encode password
          int p_Index = 0;
