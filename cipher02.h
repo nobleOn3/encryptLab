@@ -36,10 +36,32 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str =  "insert the encryption pseudocode\n";
+      str =  "encrypt(plainText, password)\n";
+      str += "   offset = offsetFromPassword(password)\n";
+      str += "   FOR p is all values in plainText\n";
+      str += "      row[i] += plainText[p]\n";
+      str += "      if r equals offset\n";
+      str += "         r-- and increment is now false\n";
+      str += "      else if increment is true\n";
+      str += "         r++;\n";
+      str += "      else\n";
+      str += "         r--;\n";
+      str += "   For k is number of rows\n";
+      str += "      text += row[k]\n"
 
       // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      str += "decrypt(plainText, password)\n";
+      str += "   offset = offsetFromPassword(password)\n";
+      str += "   FOR p is all values in plainText\n";
+      str += "      row[r] += plainText[p]\n";
+      str += "      if r equals offset\n";
+      str += "         r-- and increment is now false\n";
+      str += "      else if increment is true\n";
+      str += "         r++;\n";
+      str += "      else\n";
+      str += "         r--;\n";
+      str += "   For k is number of rows\n";
+      str += "      text += row[k]\n"
 
       return str;
    }
