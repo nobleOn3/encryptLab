@@ -178,9 +178,9 @@ public:
       std::string row = new int[key];
       int count = 0;
 
-      for(int p = 0, int r = 0; p < plainText.size(); p++)
+      for(int p = 0, int r = 0; p < editedText.size(); p++)
       {
-         row[r] +=plainText[p];
+         row[r] += editedText[p];
          count++;
          if(r == key)
          {
