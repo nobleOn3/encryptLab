@@ -119,9 +119,9 @@ public:
    {
       std::string cT;//temp cipher
       std::string encodedPassword;
-      int i;//index
-      int r;//row
-      int c;//column
+      int i = 0;//index
+      int r = 0;//row
+      int c = 0;//column
       bool found = false;
          for (i = 0; i <= plainText.size(); i++) {
            found = false;
@@ -130,39 +130,49 @@ public:
                   if(table[r][c] == toupper(plainText[i])){
                      cT += r;
                      cT += c;
-                     cT += " ";
+                     if ( i + 1 <= plainText.size()){
+                       cT += " ";
+                       }
                      found = true;
                      }
                   }
                }  
             }
-         for (i = 0; i <= password.size(); i++) {
+            
+      std::cerr << cT << std::endl;
+      
+      int size = password.size();
+         for (i = 0; i <= plainText.size(); i++) {
            found = false;
             for (r = 0; r <= 6 && found == false; r++){ 
               for (c = 0; c <= 6 && found == false; c++){
-                  if(table[r][c] == toupper(plainText[i])){
+                  if(table[r][c] == toupper(password[i % size])){
                      encodedPassword += r;
                      encodedPassword += c;
-                     encodedPassword += " ";
+                     if ( i + 1 <= password.size()){
+                       encodedPassword += " ";
+                       }
                      found = true;
                      }
                   }
                }  
             }
+            
+      std::cerr << encodedPassword << std::endl;
+      
         // Repeat above process to encode password
-         int p_Index;
-         int c_Index;
+         int p_Index = 0;
+         int c_Index = 0;
          int cipher_val = 0;
          int pass_val = 0;
          std::string cipherText;
-         int size = encodedPassword.length();
          std::cout << "size " << size << "\n";
          for (i = 0; i <= cT.size(); i = i+3){
             for (c_Index = i; cT[c_Index] != ' '; c_Index++){ 
                   cipher_val = (cipher_val * 10) + cT[c_Index];
             }
             std::cout << "c Value " << cipher_val << "\n";
-            for (p_Index = i % size; encodedPassword[p_Index] != ' '; p_Index++){ 
+            for (p_Index = i; encodedPassword[p_Index] != ' '; p_Index++){ 
                   pass_val = (pass_val * 10) + encodedPassword[p_Index];
             }
             std:: cout << " p value: " << pass_val << "\n\n";
