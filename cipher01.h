@@ -175,11 +175,11 @@ public:
             
       std::cerr << encodedPassword << std::endl;
       
-      while(encodedPasswords.size() < cT.size()) {
-               encodedPasswords += encodedPassword[i]
-               i++
-               encodedPassword += encodedPassword[i]
-              if (encodedPassword() size == cT.size()){
+      while(encodedPassword.size() < cT.size()) {
+               encodedPassword += encodedPassword[i];
+               i++;
+               encodedPassword += encodedPassword[i];
+              if (encodedPassword.size() == cT.size()){
                  break;
               }
               else{
