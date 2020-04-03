@@ -45,7 +45,7 @@ public:
       str += "   return editedText\n";
 
       // offsetFromPassword function
-      str += "keyFromPassword(password)\n";
+      str += "offsetFromPassword(password)\n";
       str += "   if the word 'two' is found in password\n";
       str += "      return 2\n";
       str += "   else if 'three' is found in password\n";
@@ -67,26 +67,25 @@ public:
 
       // The encrypt pseudocode
       str +=  "encrypt(plainText, password)\n";
-      str += "   increment = true\n"
       str += "   editedText equals the return from removeSpace(plainText)\n";
-      str += "   key equals the return from keyFromPassword(password)\n";
-      str += "   FOR index p in plainText\n";
-      str += "      row[r] += plainText[p]\n";
-      str += "      if r equals key\n";
+      str += "   offset equals the return from offsetFromPassword(password)\n";
+      str += "   FOR p is all values in plainText\n";
+      str += "      row[i] += plainText[p]\n"; 
+      str += "      if r equals offset\n";
       str += "         r-- and increment is now false\n";
       str += "      else if increment is true\n";
       str += "         r++;\n";
       str += "      else\n";
       str += "         r--;\n";
-      str += "   FOR index k in rows\n";
+      str += "   For k is number of rows\n";
       str += "      text += row[k]\n";
 
       // The decrypt pseudocode
       str += "decrypt(cipherText, password)\n";
-      str += "   key = keyFromPassword(password)\n";
-      str += "   FOR index p in plainText\n";
+      str += "   offset = offsetFromPassword(password)\n";
+      str += "   FOR p is all values in plainText\n";
       str += "      row[r] += cipherText[p]\n";
-      str += "      if r equals key\n";
+      str += "      if r equals offset\n";
       str += "         r-- and increment is now false\n";
       str += "      else if increment is true\n";
       str += "         r++;\n";
@@ -123,7 +122,7 @@ public:
     * OFFSETFROMPASSWORD
     * TODO: ADD description
     **********************************************************/
-   virtual int keyFromPassword(const std::string & password)
+   virtual int offsetFromPassword(const std::string & password)
    {
       if(password.find("two"))
       {
@@ -170,8 +169,39 @@ public:
    virtual std::string encrypt(const std::string & plainText,
                                const std::string & password)
    {
-      std::string cipherText = plainText;
+      std::string cipherText;
       // TODO - Add your code here
+      std::string editedText = removeSpace(plainText);
+
+      const int key = offsetFromPassword(password);
+      bool increment = true;
+      std::string row = new int[key];
+      int count = 0;
+
+      for(int p = 0, int r = 0; p < plainText.size(); p++)
+      {
+         row[r] +=plainText[p];
+         count++;
+         if(r == key)
+         {
+            r--;
+            increment = false;
+         }
+
+         else if(increment == true)
+            r++;
+         else
+         {
+            r--;
+         }
+         
+      }
+
+      for(int k = 0; k < count; k++)
+      {
+         cipherText = row[k];
+      }
+
       return cipherText;
    }
 
