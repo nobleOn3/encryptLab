@@ -23,7 +23,7 @@ class Cipher01 : public Cipher
       };
 
 public:
-   virtual std::string getPseudoAuth()  { return "JESSENNOBLE"; }
+   virtual std::string getPseudoAuth()  { return "Jessen Noble"; }
    virtual std::string getCipherName()  { return "Nihilist"; }
    virtual std::string getEncryptAuth() { return "Bryan Yeske"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
@@ -207,6 +207,7 @@ public:
                 cipher_val = "";
                 pass_val = "";
              }
+
          }
       return cipherText;
    }
