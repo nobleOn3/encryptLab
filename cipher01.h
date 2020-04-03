@@ -94,10 +94,11 @@ public:
       str += "   loop through password\n";
       str += "      loop through tableRows\n";
       str += "         loop through tableColumns\n";
-      str += "            IF(table[tableRow][tableCol] EQUALS password[index]\n";
-      str += "               en_pass += tableRow\n";
-      str += "               en_pass += tableCol\n";
-      str += "               en_pass += SPACE\n";
+      str += "            IF(table[tableRow][tableCol] EQUALS plaintext[index]\n";
+      str += "               encodedPass += tableRow\n";
+      str += "               encodedPass += tableCol\n";
+      str += "               IF we have not reached the end of password\n";
+      str += "                  encodedPass += SPACE\n";
       str += "   c_Index <- 0\n";
       str += "   p_Index <- 0\n";
       str += "   For length of cipherText letters\n";
