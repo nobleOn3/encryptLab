@@ -154,7 +154,6 @@ public:
                }  
             }
             
-      std::cerr << cT << std::endl;
       
          for (i = 0; i <= password.size(); i++) {
            found = false;
@@ -172,12 +171,8 @@ public:
                }  
             }
             
-      std::cout << encodedPassword << std::endl;
       
       while(encodedPassword.size() < cT.size()) {
-      std::cout << "EncodedPassword size: " << encodedPassword.size() << std::endl;
-      std::cout << "EncodedPassword: " << encodedPassword << std::endl;
-      std::cout << cT.size() << std::endl;
             for ( i = 0; i < encodedPassword.size(); i++){
                encodedPassword += " ";
                encodedPassword += encodedPassword[i];
@@ -189,8 +184,6 @@ public:
               }
             }
       }
-       std::cout << "EncodedPassword: " << encodedPassword << std::endl;
-       std::cout << "cT: " << cT << std::endl;
       
         // Repeat above process to encode password
          int p_Index = 0;
@@ -199,27 +192,21 @@ public:
          std::string pass_val;
          std::string cipherText;
          for (i = 0; c_Index < cT.size(); i++){
-            std:: cout << i << "\n";
-            std::cout << c_Index << std::endl;
-            std::cout << cT.size() << std::endl;
             for (c_Index; cT[c_Index] != ' '&& c_Index != cT.size(); c_Index++){ 
                   cipher_val += cT[c_Index];
             }
             c_Index++;
-            std::cout << "c Value " << c_Index << "\n";
             for (p_Index; encodedPassword[p_Index] != ' '&&
                  p_Index != encodedPassword.size() ; p_Index++){ 
                   pass_val += encodedPassword[p_Index];
             }
             p_Index++;
-            std:: cout << " p value: " << p_Index << "\n\n";
             cipherText += std::to_string(std::stoi(cipher_val) + std::stoi(pass_val));
              if (c_Index + 1 <= cT.size()){
                 cipherText += " ";
                 cipher_val = "";
                 pass_val = "";
              }
-             std:: cout << " cipherText: " << cipherText << "\n\n";
          }
       return cipherText;
    }
