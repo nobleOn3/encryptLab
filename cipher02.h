@@ -37,11 +37,11 @@ public:
       // TODO: please format your pseudocode
       // Remove spacee
       str = "removeSpace(plainText)\n";
-      str += "   FOR s is all values in plainText"
+      str += "   FOR s is all values in plainText";
       str += "      if (plainText[s] is equal to ' ')\n";
       str += "         editedText[s] equals plainText[i++]\n";
       str += "      else\n";
-      str += "         editedText[s] equals plainText[s]\n"
+      str += "         editedText[s] equals plainText[s]\n";
       str += "   return editedText\n";
 
       // offsetFromPassword function
@@ -65,7 +65,7 @@ public:
 
       // The encrypt pseudocode
       str +=  "encrypt(plainText, password)\n";
-      str += "   editedText equals the return from removeSpace(plainText)\n"
+      str += "   editedText equals the return from removeSpace(plainText)\n";
       str += "   offset equals the return from offsetFromPassword(password)\n";
       str += "   FOR p is all values in plainText\n";
       str += "      row[i] += plainText[p]\n";
@@ -89,13 +89,6 @@ public:
       str += "         r++;\n";
       str += "      else\n";
       str += "         r--;\n";
-<<<<<<< HEAD
-      str += "   For k is number of rows\n";
-      str += "      text += row[k]\n";
-=======
-      str += "   FOR k is number of rows\n";
-      str += "      text += row[k]\n"
->>>>>>> 9ae1db98ae412eb5b6d6bb37635a2c4b0b1f8395
 
       return str;
    }

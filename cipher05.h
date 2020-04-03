@@ -136,7 +136,6 @@ public:
 
       return plainText;
    }
-<<<<<<< HEAD
    /**********************************************************
     * Sterlize
     * removes symbols and makes only a word password
@@ -149,20 +148,6 @@ public:
 
            }
          return temp;
-=======
-
-   virtual std::string sterilize(std::string password)
-   {
-      std::string temp;
-
-      // removes symbols and makes only a word password
-      for (int i = 0; i <= password.size(); i++)
-      {
-         if (isalpha(password[i]))
-            temp.push_back(password[i]);
-      }
-      return temp;
->>>>>>> 9ae1db98ae412eb5b6d6bb37635a2c4b0b1f8395
    }
 };
 
