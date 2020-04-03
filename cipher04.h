@@ -56,6 +56,7 @@ public:
       //generates words with random letters
       str += "generateWord(x,password,offset)\n";
       str += "   wordsize = rand() % 8\n";
+      str += "   i = 0\n";
       str += "   if(offset == 0)\n";
       str += "      newWord = x\n";
       str += "      while (i < wordSize)\n";
