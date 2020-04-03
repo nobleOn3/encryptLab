@@ -5,6 +5,7 @@
 ********************************************************************/
 #ifndef CIPHER05_H
 #define CIPHER05_H
+#include <string>
 
 /********************************************************************
  * CLASS
@@ -14,7 +15,7 @@ class Cipher05 : public Cipher
 public:
    virtual std::string getPseudoAuth()  { return "Bryan Yeske"; }
    virtual std::string getCipherName()  { return "Vingenere Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Jeremias Platero"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -89,9 +90,21 @@ public:
    virtual std::string encrypt(const std::string & plainText,
                                const std::string & password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
-      return cipherText;
+      //std::string cipherText = plainText;
+      std::string key = sterilize(password);
+      std::string coded;
+      for(int i = 0; i <= plainText.size(); i++) {
+          int p = i % key.size();// needed to go back through password
+          if(isalpha(plainText[i])) {
+              int x = (plainText[i] + key[p]) % 26;
+              x += 'A';
+              coded.push_back(x);
+          }
+          else
+              coded.push_back(plainText[i]);
+      }
+       std::string cipherText = coded;
+       return cipherText;
    }
 
    /**********************************************************
@@ -102,8 +115,39 @@ public:
                                const std::string & password)
    {
       std::string plainText = cipherText;
-      // TODO - Add your code here
+         
+         std::string key = sterilize(password);
+         std::string answer;
+
+         for (int i = 0; i <= plainText.size(); i++)
+         {
+               int p = i % key.size();
+               if (isalpha(plainText[i])) 
+               {
+                     int x = ((plainText[i] - key[p]) +26) % 26;
+                     x += 'A';
+                     answer.push_back(x);
+               }
+               else 
+               {
+                     answer.push_back(plainText[i]);
+               }
+         }
+
       return plainText;
+   }
+   /**********************************************************
+    * Sterlize
+    * removes symbols and makes only a word password
+    **********************************************************/
+   virtual std::string sterilize(const std::string& password) {
+       std::string temp;
+       for (int i = 0; i <= password.size(); i++) {
+               if (isalpha(password[i]))
+                   temp.push_back(password[i]);
+
+           }
+         return temp;
    }
 };
 

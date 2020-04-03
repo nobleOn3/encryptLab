@@ -14,7 +14,7 @@ class Cipher03 : public Cipher
 public:
    virtual std::string getPseudoAuth()  { return "Nakai Velasquez"; }
    virtual std::string getCipherName()  { return "Affine Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Garrett Cloud"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -52,7 +52,18 @@ public:
                                const std::string & password)
    {
       std::string cipherText = plainText;
-      // TODO - Add your code here
+
+      int a = password[0];
+      int b = password[1];
+      int m = 95;
+      int x;
+
+      for (int i = 0; i < plainText.length(); i++) 
+      {
+          x = (int)plainText[i] - 48;
+          cipherText[i] = ax + b % m;
+      }
+
       return cipherText;
    }
 

@@ -12,9 +12,9 @@
 class Cipher02 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth()  { return "pseudocode author"; }
-   virtual std::string getCipherName()  { return "cipher name"; }
-   virtual std::string getEncryptAuth() { return "JESSENNOBLE"; }
+   virtual std::string getPseudoAuth()  { return "Garrett Cloud"; }
+   virtual std::string getCipherName()  { return "Rail Fence Cipher"; }
+   virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -37,11 +37,11 @@ public:
       // TODO: please format your pseudocode
       // Remove spacee
       str = "removeSpace(plainText)\n";
-      str += "   FOR s is all values in plainText"
+      str += "   FOR s is all values in plainText";
       str += "      if (plainText[s] is equal to ' ')\n";
       str += "         editedText[s] equals plainText[i++]\n";
       str += "      else\n";
-      str += "         editedText[s] equals plainText[s]\n"
+      str += "         editedText[s] equals plainText[s]\n";
       str += "   return editedText\n";
 
       // offsetFromPassword function
@@ -65,7 +65,7 @@ public:
 
       // The encrypt pseudocode
       str +=  "encrypt(plainText, password)\n";
-      str += "   editedText equals the return from removeSpace(plainText)\n"
+      str += "   editedText equals the return from removeSpace(plainText)\n";
       str += "   offset equals the return from offsetFromPassword(password)\n";
       str += "   FOR p is all values in plainText\n";
       str += "      row[i] += plainText[p]\n";
@@ -76,7 +76,7 @@ public:
       str += "      else\n";
       str += "         r--;\n";
       str += "   For k is number of rows\n";
-      str += "      text += row[k]\n"
+      str += "      text += row[k]\n";
 
       // The decrypt pseudocode
       str += "decrypt(plainText, password)\n";
@@ -89,8 +89,6 @@ public:
       str += "         r++;\n";
       str += "      else\n";
       str += "         r--;\n";
-      str += "   For k is number of rows\n";
-      str += "      text += row[k]\n"
 
       return str;
    }
