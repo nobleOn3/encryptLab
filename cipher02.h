@@ -102,7 +102,7 @@ public:
     **********************************************************/
    virtual std::string removeSpace(const std::string & plainText)
    {
-      string editedText;
+      std::string editedText;
       for(int s = 0; s < plainText.length(); s++)
       {
          if(plainText[s] == ' ')
@@ -122,7 +122,7 @@ public:
     * OFFSETFROMPASSWORD
     * TODO: ADD description
     **********************************************************/
-   virtual int offsetFromPassword(const std::string & password)
+   virtual int offsetFromPassword(const std::string & password) const
    {
       if(password.find("two"))
       {
@@ -164,7 +164,7 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * RAIL/FENCE encryption 
     **********************************************************/
    virtual std::string encrypt(const std::string & plainText,
                                const std::string & password)
@@ -175,10 +175,11 @@ public:
 
       const int key = offsetFromPassword(password);
       bool increment = true;
-      std::string row = new int[key];
+      std::string row[key];
       int count = 0;
 
-      for(int p = 0, int r = 0; p < editedText.size(); p++)
+      int r = 0;
+      for(int p = 0; p < editedText.size(); p++)
       {
          row[r] += editedText[p];
          count++;
