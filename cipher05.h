@@ -102,8 +102,39 @@ public:
                                const std::string & password)
    {
       std::string plainText = cipherText;
-      // TODO - Add your code here
+         
+         std::string key = sterilize(password);
+         std::string answer;
+
+         for (int i = 0; i <= plainText.size(); i++)
+         {
+               int p = i % key.size();
+               if (isalpha(plainText[i])) 
+               {
+                     int x = ((plainText[i] - key[p]) +26) % 26;
+                     x += 'A';
+                     answer.push_back(x);
+               }
+               else 
+               {
+                     answer.push_back(plainText[i]);
+               }
+         }
+
       return plainText;
+   }
+
+   virtual std::string sterilize(std::string password)
+   {
+      std::string temp;
+
+      // removes symbols and makes only a word password
+      for (int i = 0; i <= password.size(); i++)
+      {
+         if (isalpha(password[i]))
+            temp.push_back(password[i]);
+      }
+      return temp;
    }
 };
 
