@@ -175,6 +175,17 @@ public:
             
       std::cerr << encodedPassword << std::endl;
       
+      while(encodedPasswords.size() < cT.size()) {
+               encodedPasswords += encodedPassword[i]
+               i++
+               encodedPassword += encodedPassword[i]
+              if (encodedPassword() size == cT.size()){
+                 break;
+              }
+              else{
+              encodedPassword += " ";
+              }
+      }
         // Repeat above process to encode password
          int p_Index = 0;
          int c_Index = 0;
