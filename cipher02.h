@@ -47,7 +47,7 @@ public:
       str += "      else\n";
       str += "         r--;\n";
       str += "   For k is number of rows\n";
-      str += "      text += row[k]\n"
+      str += "      text += row[k]\n";
 
       // The decrypt pseudocode
       str += "decrypt(plainText, password)\n";
@@ -61,7 +61,7 @@ public:
       str += "      else\n";
       str += "         r--;\n";
       str += "   For k is number of rows\n";
-      str += "      text += row[k]\n"
+      str += "      text += row[k]\n";
 
       return str;
    }
