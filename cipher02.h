@@ -12,8 +12,8 @@
 class Cipher02 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth()  { return "pseudocode author"; }
-   virtual std::string getCipherName()  { return "cipher name"; }
+   virtual std::string getPseudoAuth()  { return "Garrett Cloud"; }
+   virtual std::string getCipherName()  { return "Rail Fence Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -89,7 +89,7 @@ public:
       str += "         r++;\n";
       str += "      else\n";
       str += "         r--;\n";
-      str += "   For k is number of rows\n";
+      str += "   FOR k is number of rows\n";
       str += "      text += row[k]\n"
 
       return str;
