@@ -11,10 +11,21 @@
  *******************************************************************/
 class Cipher01 : public Cipher
 {
+   private:
+      char table[7][7] = {
+         {'D','O','M','G','U','Y','A'},
+         {'B','C','E','F','H','I','J'},
+         {'K','L','N','P','Q','R','S'},
+         {'T','V','W','X','Z','0','1'},
+         {'2','3','4','5','6','7','8'},
+         {'9',' ','!','@','#','$','%'},
+         {'^','&','*','?','_','-',';'},
+      };
+
 public:
    virtual std::string getPseudoAuth()  { return "JESSENNOBLE"; }
    virtual std::string getCipherName()  { return "Nihilist"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Bryan Yeske"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -101,13 +112,67 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * TODO: Code that creates 
     **********************************************************/
    virtual std::string encrypt(const std::string & plainText, 
                                const std::string & password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
+      std::string cT;//temp cipher
+      std::string encodedPassword;
+      int i;//index
+      int r;//row
+      int c;//column
+      bool found = false;
+         for (i = 0; i <= plainText.size(); i++) {
+           found = false;
+            for (r = 0; r <= 7 && found == false; r++){ 
+              for (c = 0; c <= 7 && found == false; c++){
+                  if(table[r][c] == toupper(plainText[i])){
+                     cT += r;
+                     cT += c;
+                     cT += " ";
+                     found = true;
+                     }
+                  }
+               }  
+            }
+         for (i = 0; i <= password.size(); i++) {
+           found = false;
+            for (r = 0; r <= 6 && found == false; r++){ 
+              for (c = 0; c <= 6 && found == false; c++){
+                  if(table[r][c] == toupper(plainText[i])){
+                     encodedPassword += r;
+                     encodedPassword += c;
+                     encodedPassword += " ";
+                     found = true;
+                     }
+                  }
+               }  
+            }
+        // Repeat above process to encode password
+         int p_Index;
+         int c_Index;
+         int cipher_val = 0;
+         int pass_val = 0;
+         std::string cipherText;
+         int size = encodedPassword.length();
+         std::cout << "size " << size << "\n";
+         for (i = 0; i <= cT.size(); i = i+3){
+            for (c_Index = i; cT[c_Index] != ' '; c_Index++){ 
+                  cipher_val = (cipher_val * 10) + cT[c_Index];
+            }
+            std::cout << "c Value " << cipher_val << "\n";
+            for (p_Index = i % size; encodedPassword[p_Index] != ' '; p_Index++){ 
+                  pass_val = (pass_val * 10) + encodedPassword[p_Index];
+            }
+            std:: cout << " p value: " << pass_val << "\n\n";
+             cipherText += (cipher_val + pass_val);
+             if (i + 1 <= cT.size()){
+                cipherText += " ";
+                cipher_val = 0;
+                pass_val = 0;
+             }
+         }
       return cipherText;
    }
 
@@ -123,16 +188,6 @@ public:
       return plainText;
    }
 
-   private:
-      char table[7][7] = {
-         {'D','O','M','G','U','Y','A'},
-         {'B','C','E','F','H','I','J'},
-         {'K','L','N','P','Q','R','S'},
-         {'T','V','W','X','Z','0','1'},
-         {'2','3','4','5','6','7','8'},
-         {'9',' ','!','@','#','$','%'},
-         {'^','&','*','?','_','-',';'},
-      };
 
 };
 
