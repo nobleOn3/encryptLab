@@ -14,7 +14,7 @@ class Cipher02 : public Cipher
 public:
    virtual std::string getPseudoAuth()  { return "Garrett Cloud"; }
    virtual std::string getCipherName()  { return "Rail Fence Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Jessen Noble"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -107,15 +107,17 @@ public:
       {
          if(plainText[s] == ' ')
          {
-            editedText[s] = plainText[s+1];
+            editedText += plainText[s+1];
+            s++;
          }
          else
          {
-            editedText[s] = plainText[s];
+            editedText += plainText[s];
          }
          
       }
       return editedText;
+      
    }
 
    /**********************************************************
@@ -124,35 +126,35 @@ public:
     **********************************************************/
    virtual int offsetFromPassword(const std::string & password) const
    {
-      if(password.find("two"))
+      if(password == ("two"))
       {
          return 2;
       }
-      else if(password.find("three"))
+      else if(password == ("three"))
       {
          return 3;
       }
-      else if(password.find("four"))
+      else if(password == ("four"))
       {
          return 4;
       }
-      else if(password.find("five"))
+      else if(password == ("five"))
       {
          return 5;
       }
-      else if(password.find("six"))
+      else if(password==("six"))
       {
          return 6;
       }
-      else if(password.find("seven"))
+      else if(password==("seven"))
       {
          return 7;
       }
-      else if(password.find("eight"))
+      else if(password==("eight"))
       {
          return 8;
       }
-      else if(password.find("nine"))
+      else if(password==("nine"))
       {
          return 9;
       }
@@ -183,7 +185,7 @@ public:
       {
          row[r] += editedText[p];
          count++;
-         if(r == key)
+         if(r == (key-1))
          {
             r--;
             increment = false;
@@ -191,6 +193,11 @@ public:
 
          else if(increment == true)
             r++;
+         else if(r == 0)
+         {
+            r++;
+            increment = true;
+         }
          else
          {
             r--;
@@ -198,9 +205,9 @@ public:
          
       }
 
-      for(int k = 0; k < count; k++)
+      for(int k = 0; k < key; k++)
       {
-         cipherText = row[k];
+         cipherText += row[k];
       }
 
       return cipherText;
