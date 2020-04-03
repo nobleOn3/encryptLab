@@ -35,7 +35,7 @@ public:
       std::string str;
 
       // TODO: please format your pseudocode
-      // Remove spaces
+      // Remove spacee
       str = "removeSpace(plainText)\n";
       str += "   FOR s is all values in plainText"
       str += "      if (plainText[s] is equal to ' ')\n";
@@ -62,7 +62,6 @@ public:
       str += "      return 9\n";
       str += "   else\n";
       str += "      return default value of 3\n";
-
 
       // The encrypt pseudocode
       str +=  "encrypt(plainText, password)\n";
