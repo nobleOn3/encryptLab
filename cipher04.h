@@ -12,8 +12,8 @@
 class Cipher04 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth()  { return "pseudocode author"; }
-   virtual std::string getCipherName()  { return "cipher name"; }
+   virtual std::string getPseudoAuth()  { return "Jeremias Platero"; }
+   virtual std::string getCipherName()  { return "NULL Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -23,7 +23,7 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      return std::string("Gaines, Helen F. (2014). Cryptanalysis: A Study of Ciphers and Their Solution. Courier Corporation");
    }
    
    /**********************************************************
@@ -36,10 +36,42 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str =  "insert the encryption pseudocode\n";
+      str = "encrypt(plainText, password)\n";
+      str += "   FOR x is all values of plainText\n";
+      str += "   cipherText <- generateWord(x,password)\n"; 
+      str += "   RETURN cipherText\n\n";
 
       // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      str += "decrypt(cipherText, password)\n";
+      str += "   stringstream ss(cipherText)\n";
+      str += "   plainText\n";
+      str += "   offset = password % 3\n";
+      str += "      while(stringstream)\n";
+      str += "            word\n";
+      str += "            ss >> word\n";
+      str += "            plainText += word[offset]\n";
+      str += "   RETURN plainText\n\n";
+
+      //generates words with random letters
+      str += "generateWord(x,password)\n";
+      str += "   wordsize = rand() % 8\n";
+      str += "   offset = password % 3\n";
+      str += "   if(offset == 0)\n";
+      str += "      newWord = x\n";
+      str += "      while (i < wordSize)\n";
+      str += "            newWord += 'a' + (rand() % 26)\n";
+      str += "            i++\n";
+      str += "   if(offset == 1)\n";
+      str += "      newWord = x\n";
+      str += "      while (i < wordSize)\n";
+      str += "            newWord += 'a' + (rand() % 26)\n";
+      str += "            i++\n";
+      str += "   if(offset == 2)\n";
+      str += "      newWord = x\n";
+      str += "      while (i < wordSize)\n";
+      str += "            newWord += 'a' + (rand() % 26)\n";
+      str += "            i++\n";
+      str += "    return newWord\n\n";
 
       return str;
    }
