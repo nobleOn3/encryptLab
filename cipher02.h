@@ -125,7 +125,7 @@ public:
       std::string cipherText = "";
       // TODO - Add your code here
 
-      int key = (password[0] % 10) + 2;
+      int key = (password[0] % 10) + 3;
       std::cout << key << std::endl;
       bool increment = true;
       std::string* row = new std::string[key];
@@ -171,7 +171,7 @@ public:
       std::string plainText;
       // TODO - Add your code here
 
-      int key = (password[0] % 10) + 2;
+      int key = (password[0] % 10) + 3;
       bool increment = true;
       std::string row[key];
       int count = 0;
