@@ -135,50 +135,6 @@ public:
    }
 
    /**********************************************************
-    * OFFSETFROMPASSWORD
-    * TODO: ADD description
-    **********************************************************/
-   virtual int offsetFromPassword(const std::string & password) const
-   {
-      if(password == ("two"))
-      {
-         return 2;
-      }
-      else if(password == ("three"))
-      {
-         return 3;
-      }
-      else if(password == ("four"))
-      {
-         return 4;
-      }
-      else if(password == ("five"))
-      {
-         return 5;
-      }
-      else if(password==("six"))
-      {
-         return 6;
-      }
-      else if(password==("seven"))
-      {
-         return 7;
-      }
-      else if(password==("eight"))
-      {
-         return 8;
-      }
-      else if(password==("nine"))
-      {
-         return 9;
-      }
-      else
-      {
-         return 3;
-      }
-   }
-
-   /**********************************************************
     * ENCRYPT
     * RAIL/FENCE encryption 
     **********************************************************/
@@ -188,7 +144,7 @@ public:
       std::string cipherText = "";
       // TODO - Add your code here
 
-      const int key = std::stoi(password);
+      int key = std::stoi(password);
       bool increment = true;
       std::string* row = new string[key];
       int r = 0;
