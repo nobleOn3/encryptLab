@@ -15,7 +15,6 @@ public:
    virtual std::string getPseudoAuth()  { return "Garrett Cloud"; }
    virtual std::string getCipherName()  { return "Rail Fence Cipher"; }
    virtual std::string getEncryptAuth() { return "Jessen Noble"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -220,8 +219,42 @@ public:
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
    {
-      std::string plainText = cipherText;
       // TODO - Add your code here
+
+      const int key = offsetFromPassword(password);
+      bool increment = true;
+      std::string row[key];
+      int count = 0;
+
+      int r = 0;
+      for(int p = 0; p < cipherText.size(); p++)
+      {
+         row[r] += cipherText[p];
+         count++;
+         if(r == (key-1))
+         {
+            r--;
+            increment = false;
+         }
+
+         else if(increment == true)
+            r++;
+         else if(r == 0)
+         {
+            r++;
+            increment = true;
+         }
+         else
+         {
+            r--;
+         }
+         
+      }
+
+      for(int k = 0; k < key; k++)
+      {
+         plainText  += row[k];
+      }
       return plainText;
    }
 };
