@@ -23,7 +23,7 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      return std::string("https://math.asu.edu/sites/default/files/affine.pdf");
    }
    
    /**********************************************************
@@ -53,8 +53,8 @@ public:
    {
       std::string cipherText = plainText;
 
-      int a = password[0];
-      int b = password[1];
+      int a = (int)(password[0]);
+      int b = (int)(password[1]);
       int m = 95;
       int x;
 

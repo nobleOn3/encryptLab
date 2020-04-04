@@ -5,7 +5,7 @@
 ********************************************************************/
 #ifndef CIPHER04_H
 #define CIPHER04_H
-
+#include <sstream>
 /********************************************************************
  * CLASS
  *******************************************************************/
@@ -14,7 +14,7 @@ class Cipher04 : public Cipher
 public:
    virtual std::string getPseudoAuth()  { return "Jeremias Platero"; }
    virtual std::string getCipherName()  { return "NULL Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Nakai Velasquez"; }
    virtual std::string getDecryptAuth() { return "Garrett Cloud"; }
 
    /***********************************************************
@@ -84,11 +84,64 @@ public:
     * TODO: ADD description
     **********************************************************/
    virtual std::string encrypt(const std::string & plainText,
-                               const std::string & password)
+		const std::string & password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
+      std::string cipherText;
+      int offset;
+
+      for (int i = 0; i < password.size(); i++)
+      {
+            offset += (int)password[i];
+      }
+
+      offset = offset % 3;
+      
+      for (int x = 0; x < plainText.size(); x++)
+         cipherText += generateWord(plainText[x], password, offset);
+
       return cipherText;
+   }
+
+   virtual std::string generateWord(int x, std::string password, int offset)
+   {
+      int wordSize = rand() % password.size() + 1;
+      std::string newWord;
+      int i = 0;
+
+      if (offset == 0)
+      {
+         newWord += x;
+         while (i < wordSize)
+         {
+            newWord += 'a' + (rand() % 25);
+            i++;
+         }
+      }
+      else if (offset == 1)
+      {
+         newWord += x;
+         while (i < wordSize)
+         {
+            if (i == 1)
+               newWord += x;
+            else
+               newWord += 'a' + (rand() % 25);
+            i++;
+         }
+      }
+      else if (offset == 2)
+      {
+         newWord += x;
+         while (i < wordSize)
+         {
+            if (i == 2)
+               newWord += x;
+            else
+               newWord += 'a' + (rand() % 25);
+            i++;
+         }
+      }
+      return newWord;
    }
 
    /**********************************************************
@@ -98,21 +151,31 @@ public:
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
-      stringstream ss(plainText);
-      //string decrpted;
-      int offset = password % 3;
+    std::string plainText = cipherText;
+    // TODO - Add your code here
+    std::stringstream ss(plainText);//(plainText);
+    std::string newPass = password;
+    //stringstream pp(password);
+    //int x;
+    //pp >> x;
+    //cout << "Value of x: " << x << endl;
+    //string decrpted;
+    int result = 0;
+    for (int i = 0; i < newPass.length(); i++)
+    {
+        result += newPass[i] - int('0');
+    }
+    std::cout << "Result: " << result << std::endl;
+    int offset = result % 3;
+    std::cout << "Value of offset: " << offset << std::endl;
 
-      while (stringstream)
-      {
-          string word;
-          ss >> word;
-          cipherText += word[offset];
-      }
+    std::string word;
+    while (ss >> word)
+    {
+        plainText += word[offset];
+    }
 
-      return plainText;
-   }
+    return plainText;
 };
 
 #endif // CIPHER04_H
