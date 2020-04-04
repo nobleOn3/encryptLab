@@ -83,12 +83,65 @@ public:
     * ENCRYPT
     * TODO: ADD description
     **********************************************************/
-   virtual std::string encrypt(const std::string & plainText,
-                               const std::string & password)
+   std::string encrypt(const std::string & plainText,
+		const std::string & password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
+      std::string cipherText;
+      int offset;
+
+      for (int i = 0; i < password.size(); i++)
+      {
+            offset += (int)password[i];
+      }
+
+      offset = offset % 3;
+      
+      for (int x = 0; x < plainText.size(); x++)
+         cipherText += generateWord(plainText[x], password, offset);
+
       return cipherText;
+   }
+
+   std::string generateWord(int x, std::string password, int offset)
+   {
+      int wordSize = rand() % password.size() + 1;
+      std::string newWord;
+      int i = 0;
+
+      if (offset == 0)
+      {
+         newWord += x;
+         while (i < wordSize)
+         {
+            newWord += 'a' + (rand() % 25);
+            i++;
+         }
+      }
+      else if (offset == 1)
+      {
+         newWord += x;
+         while (i < wordSize)
+         {
+            if (i == 1)
+               newWord += x;
+            else
+               newWord += 'a' + (rand() % 25);
+            i++;
+         }
+      }
+      else if (offset == 2)
+      {
+         newWord += x;
+         while (i < wordSize)
+         {
+            if (i == 2)
+               newWord += x;
+            else
+               newWord += 'a' + (rand() % 25);
+            i++;
+         }
+      }
+      return newWord;
    }
 
    /**********************************************************
