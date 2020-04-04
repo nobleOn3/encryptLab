@@ -176,6 +176,7 @@ public:
     }
 
     return plainText;
+   }
 };
 
 #endif // CIPHER04_H
