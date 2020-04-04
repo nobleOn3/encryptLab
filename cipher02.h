@@ -126,11 +126,9 @@ public:
       // TODO - Add your code here
 
       int key = (password[0] % 10) + 3;
-      std::cout << key << std::endl;
       bool increment = true;
       std::string* row = new std::string[key];
       int r = 0;
-      std::cout << "Done 1\n";
       for (int p = 0; p < plainText.size(); p++)
       {
           row[r] += plainText[p];
@@ -157,7 +155,6 @@ public:
       {
           cipherText += row[k];
       }
-      std::cout << "Done 1\n";
       return cipherText;
    }
 
