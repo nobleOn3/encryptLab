@@ -53,8 +53,8 @@ public:
    {
       std::string cipherText = plainText;
 
-      int a = password[0];
-      int b = password[1];
+      int a = password[0].stoi();
+      int b = password[1].stoi();
       int m = 95;
       int x;
 

@@ -5,7 +5,7 @@
 ********************************************************************/
 #ifndef CIPHER04_H
 #define CIPHER04_H
-
+#include <sstream>
 /********************************************************************
  * CLASS
  *******************************************************************/
@@ -98,21 +98,31 @@ public:
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
-      stringstream ss(plainText);
-      //string decrpted;
-      int offset = password % 3;
+    std::string plainText = cipherText;
+    // TODO - Add your code here
+    std::stringstream ss(plainText);//(plainText);
+    std::string newPass = password;
+    //stringstream pp(password);
+    //int x;
+    //pp >> x;
+    //cout << "Value of x: " << x << endl;
+    //string decrpted;
+    int result = 0;
+    for (int i = 0; i < newPass.length(); i++)
+    {
+        result += newPass[i] - int('0');
+    }
+    std::cout << "Result: " << result << std::endl;
+    int offset = result % 3;
+    std::cout << "Value of offset: " << offset << std::endl;
 
-      while (stringstream)
-      {
-          string word;
-          ss >> word;
-          cipherText += word[offset];
-      }
+    std::string word;
+    while (ss >> word)
+    {
+        plainText += word[offset];
+    }
 
-      return plainText;
-   }
+    return plainText;
 };
 
 #endif // CIPHER04_H
