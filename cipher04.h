@@ -165,9 +165,7 @@ public:
     {
         result += newPass[i] - int('0');
     }
-    std::cout << "Result: " << result << std::endl;
     int offset = result % 3;
-    std::cout << "Value of offset: " << offset << std::endl;
 
     std::string word;
     while (ss >> word)
