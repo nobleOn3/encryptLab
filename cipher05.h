@@ -136,10 +136,11 @@ public:
 
       return answer;
    }
-};
+}:
    /**********************************************************
     * Sterlize
     * removes symbols and makes only a word password
+    * FOund to not be needed
     *
     *  virtual std::string sterilize(const std::string& password) {
     *   std::string temp;
