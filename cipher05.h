@@ -82,6 +82,26 @@ public:
 
       return str;
    }
+   /**********************************************************
+    * Sterlize
+    * removes symbols and makes only a word password
+    * FOund to not be needed
+    **********************************************************/
+      virtual std::string sterilize(const std::string& password) {
+       std::string temp;
+       for (int i = 0; i <= password.size(); i++) {
+               if (isalpha(password[i]))
+                   temp.push_back(toupper(password[i]));
+            }
+       if (temp.size() <= 0){
+          temp = "AA";
+       }
+       for (int i = 0; i <= temp.size(); i++){
+          temp[i] = std::toupper(temp[i]);
+      }
+          return temp;
+     } 
+
 
    /**********************************************************
     * ENCRYPT
@@ -91,17 +111,21 @@ public:
                                const std::string & password)
    {
       //std::string cipherText = plainText;
-      std::string key = password;
+      std::string key = sterilize(password);
       std::string coded;
-      for(int i = 0; i <= plainText.size(); i++) {
+      std::string temp = plainText;
+      for (int i = 0; i <= temp.size(); i++){
+          temp[i] = std::toupper(temp[i]);
+      }
+      for(int i = 0; i <= temp.size(); i++) {
           int p = i % key.size();// needed to go back through password
-          if(isalpha(plainText[i])) {
-              int x = (plainText[i] + key[p]) % 26;
+          if(isalpha(temp[i])) {
+              int x = (temp[i] + key[p]) % 26;
               x += 'A';
               coded.push_back(x);
           }
           else
-              coded.push_back(plainText[i]);
+              coded.push_back(temp[i]);
       }
        std::string cipherText = coded;
        return cipherText;
@@ -113,44 +137,25 @@ public:
     **********************************************************/
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
-   {
-         std::string plainText = cipherText;
-         
-         std::string key = password;
+   {     
+         std::string key = sterilize(password);
          std::string answer;
-
-         for (int i = 0; i <= plainText.size(); i++)
+         for (int i = 0; i < cipherText.size(); i++)
          {
-               int p = i % key.size();
-               if (isalpha(plainText[i])) 
+               int p = i % key.size(); 
+               if (isalpha(cipherText[i])) 
                {
-                     int x = ((plainText[i] - key[p]) +26) % 26;
+                     int x = ((cipherText[i] - key[p] + 26  )%26);
                      x += 'A';
                      answer.push_back(x);
                }
                else 
                {
-                     answer.push_back(plainText[i]);
+                     answer.push_back(cipherText[i]);
                }
          }
 
       return answer;
    }
-}:
-   /**********************************************************
-    * Sterlize
-    * removes symbols and makes only a word password
-    * FOund to not be needed
-    *
-    *  virtual std::string sterilize(const std::string& password) {
-    *   std::string temp;
-    *   for (int i = 0; i <= password.size(); i++) {
-    *           if (isalpha(password[i]))
-    *               temp.push_back(password[i]);
-    *
-    *        }
-    *      return temp;
-    *  } 
-    *};
-    **********************************************************/
-#endif // CIPHER05_H
+};
+#endif CIPHER05_H
