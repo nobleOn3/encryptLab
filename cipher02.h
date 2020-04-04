@@ -35,7 +35,7 @@ public:
       std::string str;
 
       // TODO: please format your pseudocode
-      // Remove spacee
+      // Remove space
       str = "removeSpace(plainText)\n";
       str += "   FOR s is all values in plainText";
       str += "      if (plainText[s] is equal to ' ')\n";
