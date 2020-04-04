@@ -83,7 +83,7 @@ public:
     * ENCRYPT
     * TODO: ADD description
     **********************************************************/
-   std::string encrypt(const std::string & plainText,
+   virtual std::string encrypt(const std::string & plainText,
 		const std::string & password)
    {
       std::string cipherText;
@@ -102,7 +102,7 @@ public:
       return cipherText;
    }
 
-   std::string generateWord(int x, std::string password, int offset)
+   virtual std::string generateWord(int x, std::string password, int offset)
    {
       int wordSize = rand() % password.size() + 1;
       std::string newWord;
