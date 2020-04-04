@@ -23,10 +23,10 @@ class Cipher01 : public Cipher
       };
 
 public:
-   virtual std::string getPseudoAuth()  { return "JESSENNOBLE"; }
+   virtual std::string getPseudoAuth()  { return "Jessen Noble"; }
    virtual std::string getCipherName()  { return "Nihilist"; }
    virtual std::string getEncryptAuth() { return "Bryan Yeske"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Jeremias Platero"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -59,7 +59,7 @@ public:
       str += "   loop through password\n";
       str += "      loop through tableRows\n";
       str += "         loop through tableColumns\n";
-      str += "            IF(table[tableRow][tableCol] EQUALS plaintext[index]\n";
+      str += "            IF(table[tableRow][tableCol] EQUALS password[index]\n";
       str += "               encodedPass += tableRow\n";
       str += "               encodedPass += tableCol\n";
       str += "               IF we have not reached the end of password\n";
@@ -97,7 +97,8 @@ public:
       str += "            IF(table[tableRow][tableCol] EQUALS password[index]\n";
       str += "               en_pass += tableRow\n";
       str += "               en_pass += tableCol\n";
-      str += "               en_pass += SPACE\n";
+      str += "               IF we have not reached the end of password\n";
+      str += "                  en_pass += SPACE\n";
       str += "   c_Index <- 0\n";
       str += "   p_Index <- 0\n";
       str += "   For length of cipherText letters\n";
@@ -154,7 +155,6 @@ public:
                }  
             }
             
-      std::cerr << cT << std::endl;
       
          for (i = 0; i <= password.size(); i++) {
            found = false;
@@ -172,12 +172,8 @@ public:
                }  
             }
             
-      std::cout << encodedPassword << std::endl;
       
       while(encodedPassword.size() < cT.size()) {
-      std::cout << "EncodedPassword size: " << encodedPassword.size() << std::endl;
-      std::cout << "EncodedPassword: " << encodedPassword << std::endl;
-      std::cout << cT.size() << std::endl;
             for ( i = 0; i < encodedPassword.size(); i++){
                encodedPassword += " ";
                encodedPassword += encodedPassword[i];
@@ -189,8 +185,6 @@ public:
               }
             }
       }
-       std::cout << "EncodedPassword: " << encodedPassword << std::endl;
-       std::cout << "cT: " << cT << std::endl;
       
         // Repeat above process to encode password
          int p_Index = 0;
@@ -199,27 +193,22 @@ public:
          std::string pass_val;
          std::string cipherText;
          for (i = 0; c_Index < cT.size(); i++){
-            std:: cout << i << "\n";
-            std::cout << c_Index << std::endl;
-            std::cout << cT.size() << std::endl;
             for (c_Index; cT[c_Index] != ' '&& c_Index != cT.size(); c_Index++){ 
                   cipher_val += cT[c_Index];
             }
             c_Index++;
-            std::cout << "c Value " << c_Index << "\n";
             for (p_Index; encodedPassword[p_Index] != ' '&&
                  p_Index != encodedPassword.size() ; p_Index++){ 
                   pass_val += encodedPassword[p_Index];
             }
             p_Index++;
-            std:: cout << " p value: " << p_Index << "\n\n";
             cipherText += std::to_string(std::stoi(cipher_val) + std::stoi(pass_val));
              if (c_Index + 1 <= cT.size()){
                 cipherText += " ";
                 cipher_val = "";
                 pass_val = "";
              }
-             std:: cout << " cipherText: " << cipherText << "\n\n";
+
          }
       return cipherText;
    }
@@ -231,8 +220,51 @@ public:
    virtual std::string decrypt(const std::string & cipherText, 
                                const std::string & password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
+      std::string plainText;
+      std::string en_pass = "";
+      for (int i = 0; i < password.length(); i++) {
+          for (int r = 0; r < 8; r++) {
+              for (int c = 0; c < 8; c++) {
+                  if (table[r][c] == password[i]) {
+                      en_pass += std::to_string(r);
+                      en_pass += std::to_string(c);
+                      if (i+1 < password.length()) {
+                          en_pass += " ";
+                      }
+                  }
+              }
+          }
+      }
+      int c_Index = 0;
+      int p_Index = 0;
+      std::string cipher_val;
+      std::string pass_val;
+      std::string almost_plain;
+      for (int i = 0; i < cipherText.length(); i++) {
+          for (; c_Index < cipherText.length(); c_Index++) {
+              if (cipherText[c_Index] != ' ') {
+                  cipher_val += cipherText[c_Index];
+              }
+              else {
+                  break;
+              }
+
+          }
+          for (; p_Index < en_pass.length(); p_Index++) {
+              if (en_pass[p_Index] != ' ')
+                  pass_val += en_pass[p_Index];
+              else
+                  break;
+          }
+          almost_plain += (std::stoi(cipher_val) - std::stoi(pass_val));
+          if (cipherText[i + 1] != NULL)
+              almost_plain += ' ';
+      }
+      for (int i = 0, plain_row = 0, plain_col = 0; i < almost_plain.length(); i++) {
+          plain_row = almost_plain[i++];
+          plain_col = almost_plain[i++];
+          plainText += table[plain_row][plain_col];
+      }
       return plainText;
    }
 

@@ -15,7 +15,7 @@ public:
    virtual std::string getPseudoAuth()  { return "Nakai Velasquez"; }
    virtual std::string getCipherName()  { return "Affine Cipher"; }
    virtual std::string getEncryptAuth() { return "Garrett Cloud"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Jessen Noble"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -81,8 +81,8 @@ public:
       // Store:  
       // a = first intiger 
       // b = second intiger \n  
-      int a = password[0].stoi();
-      int b = password[1].stoi(); 
+      int a = (int)(password[0]);
+      int b = (int)(password[1]); 
 
       // m = 95 (alphabet size)\n\n// 
       int m = 95;
@@ -104,7 +104,7 @@ public:
       //  ciphertext[i] = inverse * (ciphertext[i] - b) % 94\n
       for(int i = 0; i < cipherText.size(); i++)
       {
-         plainText += (char)(inverse * (cipherText[i].stoi() - b) % 94);
+         plainText += (char)(inverse * (((int)cipherText[i]) - b) % 94);
       }
       //  Display: plaintext (now decrypted)
       return plainText;

@@ -14,7 +14,7 @@ class Cipher02 : public Cipher
 public:
    virtual std::string getPseudoAuth()  { return "Garrett Cloud"; }
    virtual std::string getCipherName()  { return "Rail Fence Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Jessen Noble"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -102,57 +102,59 @@ public:
     **********************************************************/
    virtual std::string removeSpace(const std::string & plainText)
    {
-      string editedText;
+      std::string editedText;
       for(int s = 0; s < plainText.length(); s++)
       {
          if(plainText[s] == ' ')
          {
-            editedText[s] = plainText[s+1];
+            editedText += plainText[s+1];
+            s++;
          }
          else
          {
-            editedText[s] = plainText[s];
+            editedText += plainText[s];
          }
          
       }
       return editedText;
+      
    }
 
    /**********************************************************
     * OFFSETFROMPASSWORD
     * TODO: ADD description
     **********************************************************/
-   virtual int offsetFromPassword(const std::string & password)
+   virtual int offsetFromPassword(const std::string & password) const
    {
-      if(password.find("two"))
+      if(password == ("two"))
       {
          return 2;
       }
-      else if(password.find("three"))
+      else if(password == ("three"))
       {
          return 3;
       }
-      else if(password.find("four"))
+      else if(password == ("four"))
       {
          return 4;
       }
-      else if(password.find("five"))
+      else if(password == ("five"))
       {
          return 5;
       }
-      else if(password.find("six"))
+      else if(password==("six"))
       {
          return 6;
       }
-      else if(password.find("seven"))
+      else if(password==("seven"))
       {
          return 7;
       }
-      else if(password.find("eight"))
+      else if(password==("eight"))
       {
          return 8;
       }
-      else if(password.find("nine"))
+      else if(password==("nine"))
       {
          return 9;
       }
@@ -164,7 +166,7 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * RAIL/FENCE encryption 
     **********************************************************/
    virtual std::string encrypt(const std::string & plainText,
                                const std::string & password)
@@ -175,14 +177,15 @@ public:
 
       const int key = offsetFromPassword(password);
       bool increment = true;
-      std::string row = new int[key];
+      std::string row[key];
       int count = 0;
 
-      for(int p = 0, int r = 0; p < plainText.size(); p++)
+      int r = 0;
+      for(int p = 0; p < editedText.size(); p++)
       {
-         row[r] +=plainText[p];
+         row[r] += editedText[p];
          count++;
-         if(r == key)
+         if(r == (key-1))
          {
             r--;
             increment = false;
@@ -190,6 +193,11 @@ public:
 
          else if(increment == true)
             r++;
+         else if(r == 0)
+         {
+            r++;
+            increment = true;
+         }
          else
          {
             r--;
@@ -197,9 +205,9 @@ public:
          
       }
 
-      for(int k = 0; k < count; k++)
+      for(int k = 0; k < key; k++)
       {
-         cipherText = row[k];
+         cipherText += row[k];
       }
 
       return cipherText;
