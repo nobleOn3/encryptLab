@@ -169,7 +169,6 @@ public:
         // TODO - Add your code here
       std::string end = "";
       const int key = (int)password[0] % 10 + 3;
-      std::cout << "key: " << key << std::endl;
       bool increment = true;
       std::string* row = new std::string[key];
       int r = 0;
@@ -224,7 +223,6 @@ public:
           // FOR rr is zero while row[rr][cc] is not NULL
           for (int rr = 0; end.size() < cipherText.size();)
             {
-                std::cout << "row: " << row[rr][cc] << std::endl;
                 end += row[rr][cc];
                 // if rr equals key-1 then decrement rr, increment cc, set increment =                   false
                 if (rr == (key - 1))
@@ -250,7 +248,6 @@ public:
                   {
                     rr--;
                   }
-                std::cout << "end: " << end << std::endl;
               }
             return end;
           }
