@@ -46,26 +46,6 @@ public:
       str += "         editedText[s] equals plainText[s]\n";
       str += "   return editedText\n";
 
-      // offsetFromPassword function
-      str += "offsetFromPassword(password)\n";
-      str += "   if the word 'two' is found in password\n";
-      str += "      return 2\n";
-      str += "   else if 'three' is found in password\n";
-      str += "      return 3\n";
-      str += "   else if the word 'four' is found in password\n";
-      str += "      return 4\n";
-      str += "   else if 'five' is found in password\n";
-      str += "      return 5\n";
-      str += "   else if 'six' is found in password\n";
-      str += "      return 6\n";
-      str += "   else if 'seven' is found in password\n";
-      str += "      return 7\n";
-      str += "   else if 'eight' is found in password\n";
-      str += "      return 8\n";
-      str += "   else if 'nine' is found in password\n";
-      str += "      return 9\n";
-      str += "   else\n";
-      str += "      return default value of 3\n";
 
       // The encrypt pseudocode
       str +=  "encrypt(plainText, password)\n";
@@ -134,49 +114,6 @@ public:
       
    }
 
-   /**********************************************************
-    * OFFSETFROMPASSWORD
-    * TODO: ADD description
-    **********************************************************/
-   virtual int offsetFromPassword(const std::string & password) const
-   {
-      if(password == ("two"))
-      {
-         return 2;
-      }
-      else if(password == ("three"))
-      {
-         return 3;
-      }
-      else if(password == ("four"))
-      {
-         return 4;
-      }
-      else if(password == ("five"))
-      {
-         return 5;
-      }
-      else if(password==("six"))
-      {
-         return 6;
-      }
-      else if(password==("seven"))
-      {
-         return 7;
-      }
-      else if(password==("eight"))
-      {
-         return 8;
-      }
-      else if(password==("nine"))
-      {
-         return 9;
-      }
-      else
-      {
-         return 3;
-      }
-   }
 
    /**********************************************************
     * ENCRYPT
@@ -188,10 +125,12 @@ public:
       std::string cipherText = "";
       // TODO - Add your code here
 
-      const int key = std::stoi(password);
+      int key = (password[0] % 10) + 2;
+      std::cout << key << std::endl;
       bool increment = true;
-      std::string* row = new string[key];
+      std::string* row = new std::string[key];
       int r = 0;
+      std::cout << "Done 1\n";
       for (int p = 0; p < plainText.size(); p++)
       {
           row[r] += plainText[p];
@@ -218,7 +157,7 @@ public:
       {
           cipherText += row[k];
       }
-
+      std::cout << "Done 1\n";
       return cipherText;
    }
 
@@ -232,7 +171,7 @@ public:
       std::string plainText;
       // TODO - Add your code here
 
-      const int key = offsetFromPassword(password);
+      int key = (password[0] % 10) + 2;
       bool increment = true;
       std::string row[key];
       int count = 0;
