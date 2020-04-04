@@ -136,6 +136,7 @@ public:
 
       return answer;
    }
+};
    /**********************************************************
     * Sterlize
     * removes symbols and makes only a word password
