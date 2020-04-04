@@ -23,7 +23,7 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("https://math.asu.edu/sites/default/files/affine.pdf");
+      return std::string("https://math.asu.edu/sites/default/files/affine.pdf , https://www.geeksforgeeks.org/implementation-affine-cipher/?ref=rp");
    }
    
    /**********************************************************
@@ -36,10 +36,10 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str =  "\n\n\nAffine Encryption:\n\nSplit password into two intigers\nStore: \n   a = first intiger \n   b = second intiger\n   m = 95 (alphabet size)\n\nParse through plaintext:\n      x = ascii decimal (int) equivalent for plaintext[i]\n      plaintext[i] = ax + b % m\nDisplay: plaintext (now encrypted)";
+      str =  "\nAffine Encryption:\n\nSplit password into two intigers\nStore: \n   loop through password[i]\n      |a += (int)password[i] \n      |b += (int)password[i]\n   m = 95 (alphabet size)\n   a = a % m\n   b = b % password.size()\n\nParse through plaintext:\n      x = ascii decimal (int) equivalent for plaintext[i]\n      plaintext[i] = ax + b % m\nDisplay: plaintext (now encrypted)";
 
       // The decrypt pseudocode
-      str += "\n\n\nAffine Decrpytion:\n\nSplit password into two intigers\nStore: \n   a = first intiger \n   b = second intiger \n   m = 95 (alphabet size)\n\n// Find inverse of key\nLoop up from 0-94 (alphabet size):\n      if ((a * i % 94) == 1)\n         inverse = i\n\nParse through cyphertext:\n      ciphertext[i] = inverse * (ciphertext[i] - b) % 94\nDisplay: plaintext (now decrypted)";
+      str += "\nAffine Decrpytion:\n\nSplit password into two intigers\nStore: \n   loop through password[i]\n      |a += (int)password[i] \n      |b += (int)password[i]\n   m = 95 (alphabet size)\n   a = a % m\n   b = b % password.size()\n\n// Find inverse of key\nLoop up from 0-94 (alphabet size):\n      if ((a * i % 94) == 1)\n         inverse = i\n\nParse through cyphertext:\n      ciphertext[i] = inverse * (ciphertext[i] - b) % 94\nDisplay: plaintext (now decrypted)";
 
       return str;
    }

@@ -295,7 +295,8 @@ public:
           plain_row = std::stoi(temp);
           i++;
           tempTwo[0] = almost_plain[i];
-          plain_col = std::stoi(tempTwo)%10;// no known reasin is knwon for why we need %10
+          plain_col = std::stoi(tempTwo)%10;
+          // no known reason for the %10 but it doesn't work without it
           i++;
           plainText += table[plain_row][plain_col];
           plain_row = 0;

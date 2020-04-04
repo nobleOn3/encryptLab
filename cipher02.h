@@ -168,45 +168,95 @@ public:
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
    {
-      std::string plainText;
-      // TODO - Add your code here
-
-      int key = (password[0] % 10) + 3;
+    std::string plainText = cipherText;
+        // TODO - Add your code here
+      std::string end = "";
+      const int key = (int)password[0] % 10 + 3;
+      std::cout << "key: " << key << std::endl;
       bool increment = true;
-      std::string row[key];
-      int count = 0;
-
+      std::string* row = new std::string[key];
       int r = 0;
-      for(int p = 0; p < cipherText.size(); p++)
-      {
-         row[r] += cipherText[p];
-         count++;
-         if(r == (key-1))
-         {
-            r--;
-            increment = false;
-         }
-
-         else if(increment == true)
-            r++;
-         else if(r == 0)
-         {
-            r++;
-            increment = true;
-         }
-         else
-         {
-            r--;
-         }
-         
-      }
-
-      for(int k = 0; k < key; k++)
-      {
-         plainText  += row[k];
-      }
-      return plainText;
-   }
+      // FOR p is zero while p is less than plainText.size()
+      for (int p = 0; p <= plainText.size(); p++)
+        {
+          // row[r] += plainText[p]
+          row[r] += plainText[p];
+          // if r equals key-1
+          if (r == (key - 1))
+            {
+              // decrement r
+              r--;
+              // increment false
+              increment = false;
+            }
+            // else if increment is true
+          else if (increment)
+            {
+              // increment r
+              r++;
+            }
+          // if r equals zero
+          else if (r == 0)
+            {
+              // increment r
+              r++;
+              // increment equals true
+              increment = true;
+            }
+          // else decrement r
+          else
+            {
+              r--;
+            }
+          }
+        int p = 0;
+        // FOR r is zero while r is less than key
+        for (int r = 0; r < key; r++)
+          {
+            // FOR c is zero while row[r][c] is not NULL
+            for (int c = 0; row[r][c] != NULL; c++)
+              {
+                // row[r][c] = plainText[p]
+                row[r][c] = plainText[p];
+                // increment p
+                p++;
+              }
+            }
+          int cc = 0;
+          increment = true;
+          // FOR rr is zero while row[rr][cc] is not NULL
+          for (int rr = 0; end.size() < cipherText.size();)
+            {
+                std::cout << "row: " << row[rr][cc] << std::endl;
+                end += row[rr][cc];
+                // if rr equals key-1 then decrement rr, increment cc, set increment =                   false
+                if (rr == (key - 1))
+                  {
+                    rr--;
+                    cc++;
+                    increment = false;
+                  }
+                // if rr is zero and increment is false then increment rr, increment cc, set increment equal to true
+                else if (rr == 0 && !increment)
+                  {
+                    rr++;
+                    cc++;
+                    increment = true;
+                  }
+                // else if increment is true then increment cc
+                else if (increment)
+                  {
+                    rr++;
+                  }
+                // else decrement cc
+                else
+                  {
+                    rr--;
+                  }
+                std::cout << "end: " << end << std::endl;
+              }
+            return end;
+          }
 };
 
 #endif // CIPHER02_H
