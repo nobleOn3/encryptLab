@@ -158,3 +158,4 @@ public:
       return answer;
    }
 };
+#endif CIPHER05_H
