@@ -51,20 +51,20 @@ public:
    virtual std::string encrypt(const std::string & plainText,
                                const std::string & password)
    {
-      std::string cipherText = plainText;
+       std::string cipherText = "";
+       // TODO - Add your code here
+       int a = (int)(password[0]) - '0'; // actual number
+       int b = (int)(password[1]) - '0';
+       int m = 95;
+       int x;
 
-      int a = (int)(password[0]);
-      int b = (int)(password[1]);
-      int m = 95;
-      int x;
+       for (int i = 0; i < plainText.length(); i++)
+       {
+           x = (int)plainText[i]; //ascii
+           cipherText += std::to_string((a * x + b) % m);
+       }
 
-      for (int i = 0; i < plainText.length(); i++) 
-      {
-          x = (int)plainText[i] - 48;
-          cipherText[i] = (a * x) + (b % m);
-      }
-
-      return cipherText;
+       return cipherText;
    }
 
    /**********************************************************

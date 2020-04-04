@@ -23,7 +23,7 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      return std::string("https://pdfs.semanticscholar.org/5c64/40d0e45b326989669f0757bfbed4446ad5c1.pdf");
    }
    
    /**********************************************************
