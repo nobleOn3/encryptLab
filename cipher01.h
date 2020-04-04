@@ -222,48 +222,84 @@ public:
    {
       std::string plainText;
       std::string en_pass = "";
-      for (int i = 0; i < password.length(); i++) {
-          for (int r = 0; r < 8; r++) {
-              for (int c = 0; c < 8; c++) {
-                  if (table[r][c] == password[i]) {
-                      en_pass += std::to_string(r);
-                      en_pass += std::to_string(c);
-                      if (i+1 < password.length()) {
-                          en_pass += " ";
-                      }
+      bool found = false;
+      for (int i = 0; i <= password.size(); i++) {
+           found = false;
+            for (int r = 0; r < 7 && found == false; r++){ 
+              for (int c = 0; c < 7 && found == false; c++){
+                  if(table[r][c] == toupper(password[i])){
+                     en_pass += std::to_string(r);
+                     en_pass += std::to_string(c);
+                     if ( i + 1 < password.size()){
+                       en_pass += " ";
+                       }
+                     found = true;
+                     }
                   }
+               }  
+            }
+            
+            while(en_pass.size() < cipherText.size()) {
+            for (int i = 0; i < en_pass.size(); i++){
+               en_pass += " ";
+               en_pass += en_pass[i];
+               i++;
+               en_pass += en_pass[i];
+               i++;
+              if (en_pass.size() >= cipherText.size()){
+                 break;
               }
-          }
+            }
       }
       int c_Index = 0;
       int p_Index = 0;
       std::string cipher_val;
       std::string pass_val;
       std::string almost_plain;
-      for (int i = 0; i < cipherText.length(); i++) {
-          for (; c_Index < cipherText.length(); c_Index++) {
+      for (int i = 0; c_Index < cipherText.length(); i++) {
+          for (c_Index; c_Index < cipherText.length(); c_Index++) {
               if (cipherText[c_Index] != ' ') {
                   cipher_val += cipherText[c_Index];
               }
               else {
+                  c_Index++;
                   break;
               }
 
           }
-          for (; p_Index < en_pass.length(); p_Index++) {
+          for (p_Index; p_Index < en_pass.length(); p_Index++) {
               if (en_pass[p_Index] != ' ')
                   pass_val += en_pass[p_Index];
-              else
+              else{
+                  p_Index++;
                   break;
+              }
           }
-          almost_plain += (std::stoi(cipher_val) - std::stoi(pass_val));
-          if (cipherText[i + 1] != NULL)
+          int temp = std::stoi(cipher_val) - std::stoi(pass_val);
+          if (temp < 10){
+          almost_plain += "0";
+          almost_plain += std::to_string(temp);
+          }
+          else{
+          almost_plain += std::to_string(temp);
+          }
+          cipher_val = "";
+          pass_val = "";
+          if (i + 1 <= cipherText.size())
               almost_plain += ' ';
       }
       for (int i = 0, plain_row = 0, plain_col = 0; i < almost_plain.length(); i++) {
-          plain_row = almost_plain[i++];
-          plain_col = almost_plain[i++];
+          std::string temp;
+          std::string tempTwo;
+          temp[0] = almost_plain[i];
+          plain_row = std::stoi(temp);
+          i++;
+          tempTwo[0] = almost_plain[i];
+          plain_col = std::stoi(tempTwo)%10;// no known reasin is knwon for why we need %10
+          i++;
           plainText += table[plain_row][plain_col];
+          plain_row = 0;
+          plain_col = 0;
       }
       return plainText;
    }

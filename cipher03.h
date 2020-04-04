@@ -23,7 +23,7 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      return std::string("https://math.asu.edu/sites/default/files/affine.pdf");
    }
    
    /**********************************************************

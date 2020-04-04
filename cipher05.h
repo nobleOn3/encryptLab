@@ -16,7 +16,7 @@ public:
    virtual std::string getPseudoAuth()  { return "Bryan Yeske"; }
    virtual std::string getCipherName()  { return "Vingenere Cipher"; }
    virtual std::string getEncryptAuth() { return "Jeremias Platero"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Nakai Velasquez"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -91,7 +91,7 @@ public:
                                const std::string & password)
    {
       //std::string cipherText = plainText;
-      std::string key = sterilize(password);
+      std::string key = password;
       std::string coded;
       for(int i = 0; i <= plainText.size(); i++) {
           int p = i % key.size();// needed to go back through password
@@ -114,9 +114,9 @@ public:
    virtual std::string decrypt(const std::string & cipherText,
                                const std::string & password)
    {
-      std::string plainText = cipherText;
+         std::string plainText = cipherText;
          
-         std::string key = sterilize(password);
+         std::string key = password;
          std::string answer;
 
          for (int i = 0; i <= plainText.size(); i++)
@@ -134,21 +134,23 @@ public:
                }
          }
 
-      return plainText;
+      return answer;
    }
+}:
    /**********************************************************
     * Sterlize
     * removes symbols and makes only a word password
+    * FOund to not be needed
+    *
+    *  virtual std::string sterilize(const std::string& password) {
+    *   std::string temp;
+    *   for (int i = 0; i <= password.size(); i++) {
+    *           if (isalpha(password[i]))
+    *               temp.push_back(password[i]);
+    *
+    *        }
+    *      return temp;
+    *  } 
+    *};
     **********************************************************/
-   virtual std::string sterilize(const std::string& password) {
-       std::string temp;
-       for (int i = 0; i <= password.size(); i++) {
-               if (isalpha(password[i]))
-                   temp.push_back(password[i]);
-
-           }
-         return temp;
-   }
-};
-
 #endif // CIPHER05_H
