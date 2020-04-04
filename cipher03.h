@@ -62,6 +62,7 @@ public:
        {
            x = (int)plainText[i]; //ascii
            cipherText += std::to_string((a * x + b) % m);
+           cipherText += ' ';
        }
 
        return cipherText;
@@ -94,17 +95,43 @@ public:
       int inverse = 0;
       for(int i = 0; i < m; i++)
       {
-         if(((a * i) % 94) == 1)
+         if(((a * i) % m) == 1)
          {
             inverse = i;
             break;
          }
       }
+
       //Parse through ciphertext:\n      
       //  ciphertext[i] = inverse * (ciphertext[i] - b) % 94\n
+      std::string cipherTmp;
+      int j = 0;
       for(int i = 0; i < cipherText.size(); i++)
       {
-         plainText += (char)(inverse * (((int)cipherText[i]) - b) % 94);
+         for(j; j < cipherText.size(); j++)
+         {
+            if (cipherText[j] != ' ')
+            {
+               cipherTmp += cipherText[j];
+            }
+            else
+            {
+               j++;
+               break;  
+            }
+         }
+
+         std::cout << inverse << std::endl;
+         std::cout << (char)((((std::stoi(cipherTmp)) - b) % m) + ((int)' ')) << std::endl;
+         std::cout << ((char)(inverse * ((std::stoi(cipherTmp)) - b) % m) + ((int)' ')) << std::endl;
+         //plainText += (char)(inverse * ((a * std::stoi(cipherTmp) + b) % m) + (int)' ');
+         plainText += (char)(inverse * ((std::stoi(cipherTmp)) - b) % m) + (int)' ';
+         cipherTmp = "";
+
+         if(j >= cipherText.size())
+         {
+            break;
+         }
       }
       //  Display: plaintext (now decrypted)
       return plainText;
