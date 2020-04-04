@@ -98,7 +98,7 @@ public:
       str += "               en_pass += tableRow\n";
       str += "               en_pass += tableCol\n";
       str += "               IF we have not reached the end of password\n";
-      str += "                  encodedPass += SPACE\n";
+      str += "                  en_pass += SPACE\n";
       str += "   c_Index <- 0\n";
       str += "   p_Index <- 0\n";
       str += "   For length of cipherText letters\n";
