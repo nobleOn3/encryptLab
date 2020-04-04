@@ -121,10 +121,6 @@ public:
             }
          }
 
-         std::cout << inverse << std::endl;
-         std::cout << (char)((((std::stoi(cipherTmp)) - b) % m) + ((int)' ')) << std::endl;
-         std::cout << ((char)(inverse * ((std::stoi(cipherTmp)) - b) % m) + ((int)' ')) << std::endl;
-         //plainText += (char)(inverse * ((a * std::stoi(cipherTmp) + b) % m) + (int)' ');
          plainText += (char)(inverse * ((std::stoi(cipherTmp)) - b) % m) + (int)' ';
          cipherTmp = "";
 
