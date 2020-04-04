@@ -91,7 +91,7 @@ public:
                                const std::string & password)
    {
       //std::string cipherText = plainText;
-      std::string key = sterilize(password);
+      std::string key = password;
       std::string coded;
       for(int i = 0; i <= plainText.size(); i++) {
           int p = i % key.size();// needed to go back through password
@@ -139,16 +139,16 @@ public:
    /**********************************************************
     * Sterlize
     * removes symbols and makes only a word password
+    *
+    *  virtual std::string sterilize(const std::string& password) {
+    *   std::string temp;
+    *   for (int i = 0; i <= password.size(); i++) {
+    *           if (isalpha(password[i]))
+    *               temp.push_back(password[i]);
+    *
+    *        }
+    *      return temp;
+    *  } 
+    *};
     **********************************************************/
-   virtual std::string sterilize(const std::string& password) {
-       std::string temp;
-       for (int i = 0; i <= password.size(); i++) {
-               if (isalpha(password[i]))
-                   temp.push_back(password[i]);
-
-           }
-         return temp;
-   }
-};
-
 #endif // CIPHER05_H
